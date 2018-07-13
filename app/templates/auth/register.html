@@ -1,0 +1,39 @@
+{% import "bootstrap/wtf.html" as wtf %}
+{% extends "auth/login.html" %}
+{% block p %}
+    <p class="error" style="font-size: 200px">REGISTER</p>
+{% endblock %}
+{% block h %}
+<h3>Register to your private account</h3>
+<p>Enter your username and password to register:</p>
+{% endblock %}
+{% block form %}
+{#    <form class="form" name="login" method="POST">#}
+{#        <div style="text-align: center;padding: auto;">#}
+{#            <div class="form-group">#}
+{#                {{ form.csrf_token }}#}
+{#                {{ wtf.form_field(form.username) }}#}
+{#            </div>#}
+{#            <div class="form-group">#}
+{#                {{ wtf.form_field(form.email) }}#}
+{#            </div>#}
+{##}
+{#            <div class="form-group">#}
+{#                {{ wtf.form_field(form.password) }}#}
+{#            </div>#}
+{#            <div class="form-group">#}
+{#                <p>{{ wtf.form_field(form.password2) }}</p>#}
+{#            </div>#}
+{#            <div class="form-group">#}
+{#                {{ wtf.form_field(form.submit) }}#}
+{#            </div>#}
+{##}
+{#        </div>#}
+{#    </form>#}
+        <div style="text-align: center;padding: auto;">
+            {% block form1 %}
+                {{ wtf.csrf_token }}
+                {{ wtf.quick_form(form) }}
+            {% endblock %}
+        </div>
+{% endblock %}

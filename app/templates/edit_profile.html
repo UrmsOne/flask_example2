@@ -1,0 +1,106 @@
+{% import "bootstrap/wtf.html" as wtf %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>URMSONE-Profile</title>
+    <link rel="stylesheet" media="screen" href="{{ url_for('static', filename='css/style404.css') }}">
+    <link rel="icon" href="http://img/favicon.ico" type="image/x-icon"/>
+    <link rel="shortcut icon" href="http://img/favicon.ico" type="image/x-icon"/>
+
+
+    <script src="{{ url_for('static', filename='js/jquery-1.10.2.js') }}"></script>
+    <!-- Bootstrap Js -->
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+
+
+    <!-- Bootstrap Styles-->
+
+    <link rel="shortcut icon" href="http://img/favicon.ico" type="image/x-icon"/>
+
+    <script src="{{ url_for('static', filename='js/jquery-1.10.2.js') }}"></script>
+    <!-- Bootstrap Js -->
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+
+    {#    <script language="JavaScript">#}
+    {#        function dosearch() {#}
+    {#            var sf = document.searchform;#}
+    {#            var submitto = sf.sengine.value + escape(sf.searchterms.value);#}
+    {#            window.location.href = submitto;#}
+    {#            return false;#}
+    {#        }#}
+    {#    </script>#}
+</head>
+<body>
+
+<div class="header">
+    <div style="padding-top: 8px"><img src="{{ url_for('static', filename='imgs/logo.png') }}"/></div>
+
+</div>
+{% block p %}
+    <br>
+    <p class="error" style="font-size: 200px">Edit profile</p>
+{% endblock %}
+<div class="content">
+    <div class="form-top">
+        <div class="form-top-left">
+            {% for message in get_flashed_messages() %}
+                <div style="background-color: #fcf8e3;border-color: #faebcc; color: #8a6d3b;">
+                    {{ message }}
+                    <button type="button" class="close" data-dismiss="alert"
+                            style="color: #000000;float: right;font-size: 21px;font-weight: bold;line-height: 1;text-shadow: 0 1px 0 #fff;opacity: .2">
+                        &times;
+                    </button>
+                </div>
+            {% endfor %}
+            {% block h %}
+                <h3>Moderate your profile</h3>
+                <p></p>
+            {% endblock %}
+        </div>
+
+
+    </div>
+{#        <div style="text-align: center;padding: auto;">#}
+{#            {% block form1 %}#}
+{#                {{ wtf.quick_form(form) }}#}
+{#            {% endblock %}#}
+{#        </div>#}
+    {% block form %}
+        <form class="form" name="login" method="POST">
+            <div style="text-align: center;padding: auto;">
+                {{ form.csrf_token }}
+                <div class="form-group">
+                    {{ wtf.form_field(form.name) }}
+                </div>
+                <div class="form-group">
+                    {{ wtf.form_field(form.location) }}
+                </div>
+
+                <div class="form-group">
+                    {{ wtf.form_field(form.about_me) }}
+                </div>
+                <div class="form-group">
+                    {{ wtf.form_field(form.submit) }}
+                </div>
+            </div>
+        </form>
+    {% endblock %}
+    <!-- Change www.yoursite.com to your website domain -->
+    <br>
+    <br>
+    <br>
+    <p class="links">
+        <br>
+        <a href="{{ request.args.get('next') or url_for('main.index') }}" id="button">&larr; Back</a>
+        <a href="{{ url_for('auth.register') }}" id="button">Register</a>
+        <a href="/">Homepage</a>
+        <a href="#">Portfolio</a>
+        <a href="#">About Us</a>
+        <a href="#">Blog</a>
+        <!--These are links. You can change it to a page you want to by replacing the '#' with your url.-->
+    </p>
+</div>
+
+</body>
+</html>

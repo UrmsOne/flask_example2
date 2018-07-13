@@ -1,0 +1,20 @@
+{% extends "bootstrap/base.html" %}
+{% block title %}Hello{% endblock %}
+{% block head %}
+    {{ super() }}
+    <sytle>
+
+    </sytle>
+{% endblock %}
+{% block body %}
+    <h1>Hello, Everybody!</h1>
+    <p>{{ moment(current_time).format('YYYY年M月D日, h:mm:ss a') }}</p>
+    <p>{{ moment(current_time).fromNow(refresh=True) }}</p>
+{% endblock %}
+
+{% block scripts %}
+    {{ super() }}
+    {{ moment.include_jquery() }}
+    {{ moment.include_moment() }}
+    {{ moment.lang("zh-CN") }}
+{% endblock %}
